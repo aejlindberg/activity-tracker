@@ -16,9 +16,10 @@ class MyPage extends React.Component {
         <div className="activity-section-grid">
           A-Games Grid
         </div>
-        <div className="activity-section-popup">
-          <div className="activity-section-popup-title">
-            
+        <div className="activity-popup">
+          <div className="activity-popup-inner">
+            <h2>Aktivitet</h2>
+            <button className="activity-popup-button">X</button>
           </div>
         </div>
         <div className="activity-section-log">
