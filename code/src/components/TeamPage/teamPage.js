@@ -5,9 +5,11 @@ class TeamPage extends React.Component {
 
   render() {
     return (
-      <div>
-        Hello from TeamPage!
-      </div>
+      <main>
+        <h1>Välkommen</h1>
+        <h2>Välj ett lag att stödja</h2>
+        <input type="text" placeholder="Sök din förening" />
+      </main>
     )
   }
 
