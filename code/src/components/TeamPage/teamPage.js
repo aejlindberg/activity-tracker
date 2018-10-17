@@ -1,65 +1,52 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
-import Select from "react-select"
+import SearchListItem from "../SearchListItem/searchListItem.js"
 
 class TeamPage extends React.Component {
 
   state = {
     teamSearch: [],
-    selectedTeam: null
+    query: ""
   }
- componentDidMount(){
-   const teamsUrl = `https://api.www.svenskaspel.se/player/sponsorship/autocomplete?search=stockholm&numResponses=10`
 
-   fetch(teamsUrl)
-     .then(response => response.json())
-     .then(teams => {
-       this.setState({
-         teamSearch: teams.data.map(option => ({ label: option.name, value: option.name }))
-       })
-       console.log(this.state.teamSearch)
-     })
-
- }
-  componentDidUpdate(prevState) {
-    if (this.state.selectedTeam !== prevState.selectedTeam) {
-      //const searchString = this.state.selectedTeam
-      //const teamsUrl = `https://api.www.svenskaspel.se/player/sponsorship/autocomplete?search=${searchString}&numResponses=10`
-      const teamsUrl = `https://api.www.svenskaspel.se/player/sponsorship/autocomplete?search=stockholm&numResponses=10`
-
-      fetch(teamsUrl)
-        .then(response => response.json())
-        .then(teams => {
-          this.setState({
-            teamSearch: teams.data.map(option => ({ label: option.name, value: option.name }))
-          })
-          console.log(this.state.teamSearch)
+handleTeamSearch = event => {
+  const { query } = this.state
+  this.setState({ query: event.target.value }, () => {
+    const teamsUrl = `https://api.www.svenskaspel.se/player/sponsorship/autocomplete?search=${query}&numResponses=10`
+    fetch(teamsUrl)
+      .then(response => response.json())
+      .then(teams => {
+        this.setState({
+          teamSearch: teams.data
         })
-    }
-  }
+      })
+  })
+}
 
-  handleTeamSearch = selectedTeam => {
-    this.setState({ selectedTeam })
-    console.log("selectedTeam", selectedTeam)
-  }
+render() {
+  const { query, teamSearch } = this.state
 
-  render() {
-    const { selectedTeam, teamSearch } = this.state
-
-    return (
-      <main>
-        <h1>Välkommen</h1>
-        <h2>Välj ett lag att stödja</h2>
-        <Select
-          value={selectedTeam}
-          onChange={this.handleTeamSearch}
-          options={teamSearch}
-          name="teams"
-          placeholder="Sök din förening" />
-        <button type="button">Gå till min sida</button>
-      </main>
-    )
-  }
+  return (
+    <main>
+      <h1>Välkommen</h1>
+      <h2>Välj ett lag att stödja</h2>
+      <input
+        type="text"
+        value={query}
+        onChange={this.handleTeamSearch}
+        placeholder="Sök din förening" />
+      <ul>
+        {teamSearch.map(team => (
+          <SearchListItem
+            key={team.id}
+            name={team.name}
+            city={team.city} />
+        ))}
+      </ul>
+      <button type="button">Gå till min sida</button>
+    </main>
+  )
+}
 
 }
 
