@@ -1,0 +1,29 @@
+.wrapper {
+  padding: 20px;
+}
+
+.mp-header-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    border: 1px solid #333;
+  }
+}
+
+.activity-section-grid {
+  background-color: lightyellow;
+  height: 400px;
+  width: 100%;
+}
+
+.activity-popup-button {
+  border: 1px solid #333;
+  border-radius: 100%;
+}
+
+.activity-section-log {
+  background-color: lightpink;
+}
