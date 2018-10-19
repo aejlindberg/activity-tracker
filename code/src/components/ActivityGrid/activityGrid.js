@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import SingleActivity from "../SingleActivity/singleActivity.js"
 import "./activityGrid.scss"
 
-
 class ActivityGrid extends React.Component {
 state = {
   activities: [
@@ -45,8 +44,11 @@ handleSubmitNew = e => {
   }
 }
 
+handleClick = (actName, day) => {
+  console.log('You clicked', actName, day)
+}
+
 render() {
-  console.log(this.state.activities)
   return (
     <div className="grid-container">
       <h2>Min vecka:</h2>
@@ -66,11 +68,12 @@ render() {
         <tbody>
           {this.state.activities.map((activity, actIndex) => {
             return <SingleActivity
-                key = {actIndex}
-                id = {actIndex}
-                name = {activity.name}
-                days = {activity.dailyPoints}
-              />
+              key={actIndex}
+              id={actIndex}
+              name={activity.name}
+              days={activity.dailyPoints}
+              handleDayClick={day => this.handleClick(activity.name, day)}
+            />
           })}
         </tbody>
       </table>
