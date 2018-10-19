@@ -25,7 +25,11 @@ handleTeamSearch = event => {
 }
 
 handleTeamChoice = (teamName, teamCity) => {
-  this.setState({ chosenTeam: `${teamName} (${teamCity})` })
+  this.setState({
+    chosenTeam: `${teamName} (${teamCity})`,
+    teamSearch: [],
+    query: ""
+  })
 }
 
 render() {
