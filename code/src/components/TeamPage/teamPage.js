@@ -6,12 +6,13 @@ class TeamPage extends React.Component {
 
   state = {
     teamSearch: [],
-    query: ""
+    query: "",
+    chosenTeam: ""
   }
 
 handleTeamSearch = event => {
-  const { query } = this.state
-  this.setState({ query: event.target.value }, () => {
+  const query = event.target.value
+  this.setState({ query }, () => {
     const teamsUrl = `https://api.www.svenskaspel.se/player/sponsorship/autocomplete?search=${query}&numResponses=10`
     fetch(teamsUrl)
       .then(response => response.json())
@@ -20,6 +21,14 @@ handleTeamSearch = event => {
           teamSearch: teams.data
         })
       })
+  })
+}
+
+handleTeamChoice = (teamName, teamCity) => {
+  this.setState({
+    chosenTeam: `${teamName} (${teamCity})`,
+    teamSearch: [],
+    query: ""
   })
 }
 
@@ -40,10 +49,14 @@ render() {
           <SearchListItem
             key={team.id}
             name={team.name}
-            city={team.city} />
+            city={team.city}
+            handleTeamChoice={this.handleTeamChoice} />
         ))}
       </ul>
-      <button type="button">Gå till min sida</button>
+      <div className="chosen-team">{this.state.chosenTeam}</div>
+      <Link to="/mypage">
+        <button type="button">Gå till min sida</button>
+      </Link>
     </main>
   )
 }
