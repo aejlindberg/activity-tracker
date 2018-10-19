@@ -10,8 +10,8 @@ class TeamPage extends React.Component {
   }
 
 handleTeamSearch = event => {
-  const { query } = this.state
-  this.setState({ query: event.target.value }, () => {
+  const query = event.target.value
+  this.setState({ query }, () => {
     const teamsUrl = `https://api.www.svenskaspel.se/player/sponsorship/autocomplete?search=${query}&numResponses=10`
     fetch(teamsUrl)
       .then(response => response.json())
