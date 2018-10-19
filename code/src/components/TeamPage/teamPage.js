@@ -6,7 +6,8 @@ class TeamPage extends React.Component {
 
   state = {
     teamSearch: [],
-    query: ""
+    query: "",
+    chosenTeam: ""
   }
 
 handleTeamSearch = event => {
@@ -21,6 +22,10 @@ handleTeamSearch = event => {
         })
       })
   })
+}
+
+handleTeamChoice = (teamName, teamCity) => {
+  this.setState({ chosenTeam: `${teamName} (${teamCity})` })
 }
 
 render() {
@@ -40,9 +45,11 @@ render() {
           <SearchListItem
             key={team.id}
             name={team.name}
-            city={team.city} />
+            city={team.city}
+            handleTeamChoice={this.handleTeamChoice} />
         ))}
       </ul>
+      <div className="chosen-team">{this.state.chosenTeam}</div>
       <Link to="/mypage">
         <button type="button">Gå till min sida</button>
       </Link>
