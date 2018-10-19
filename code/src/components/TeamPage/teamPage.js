@@ -43,7 +43,9 @@ render() {
             city={team.city} />
         ))}
       </ul>
-      <button type="button">Gå till min sida</button>
+      <Link to="/mypage">
+        <button type="button">Gå till min sida</button>
+      </Link>
     </main>
   )
 }
