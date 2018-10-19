@@ -1,0 +1,72 @@
+.grid-container {
+  display: block;
+}
+
+.activity-grid {
+  display: grid;
+  margin: 10px;
+  background: grey;
+
+  ul {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 0.25em;
+    max-width: 64em;
+    padding: 0;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    margin-left: 0;
+    font-size: calc(14px + (21 - 16) * ((100vw - 300px) / (1600 - 300)));
+  }
+
+  ul.day-grid li {
+    background-color: #eeeeee;
+    border: 1px solid #272727;
+    height: 12vw;
+    max-height: 125px;
+  }
+  ul.day-grid li.day-grid__activity {
+    background: none;
+    min-width: 60px;
+    border: none;
+  }
+  ul.weekdays abbr[title] {
+    border: none;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .day-grid__activity {
+    min-width: 60px;
+  }
+
+}
+
+
+@media screen and (min-width: 1025px) {
+  .activity-grid {
+    max-width: 1025px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media all and (max-width: 800px) {
+  ul {
+    grid-gap: .5em;
+  }
+
+  ul.weekdays li {
+    font-size: 0;
+  }
+
+  ul.weekdays > li abbr:after {
+      content: attr(title);
+      font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
+      text-align: center;
+    }
+}
