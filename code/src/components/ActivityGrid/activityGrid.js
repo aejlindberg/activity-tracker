@@ -19,10 +19,31 @@ state = {
       name: "Cyklade",
       dailyPoints: [0, 0, 1, 0, 0, 0, 0]
     }
-  ]
+  ],
+  currentText: "",
+  placeHolderText: "Lägg till aktivitet"
 }
 
+handleNewText = e => this.setState({
+  currentText: e.target.value
+})
 
+handleSubmitNew = e => {
+  e.preventDefault()
+  if (!this.state.currentText.length) {
+    this.setState({ placeHolderText: "Namnge din aktivitet" })
+  } else {
+    const newActivity = {
+      name: this.state.currentText,
+      dailyPoints: [0, 0, 0, 0, 0, 0, 0]
+    }
+    this.setState({
+      activities: this.state.activities.concat(newActivity),
+      currentText: "",
+      placeHolderText: "Lägg till aktivitet"
+    })
+  }
+}
 
 render() {
   console.log(this.state.activities)
@@ -53,6 +74,15 @@ render() {
           })}
         </tbody>
       </table>
+
+      <form onSubmit={this.handleSubmitNew}>
+        <input
+          type="text"
+          value={this.state.currentText}
+          placeholder={this.state.placeHolderText}
+          onChange={this.handleNewText} />
+        <input type="submit" value="+" />
+      </form>
 
     </div>
   )
