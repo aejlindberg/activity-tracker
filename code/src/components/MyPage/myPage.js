@@ -4,6 +4,23 @@ import "./myPage.scss"
 
 class MyPage extends React.Component {
 
+state = {
+  myTeam: ""
+}
+
+getChosenTeam = () => {
+  console.log("My team: ", localStorage.getItem("chosenTeam"))
+  if (localStorage.getItem("chosenTeam")) {
+    this.setState({
+      myTeam: localStorage.getItem("chosenTeam")
+    })
+  }
+}
+
+componentDidMount() {
+  this.getChosenTeam()
+}
+
   render() {
     return (
       <div className="wrapper">
@@ -25,6 +42,7 @@ class MyPage extends React.Component {
         <div className="activity-section-log">
         LOG
         </div>
+        <h1>MITT LAG: {this.state.myTeam}</h1>
       </div>
     )
   }

@@ -29,7 +29,7 @@ handleTeamChoice = (teamName, teamCity) => {
     chosenTeam: `${teamName} (${teamCity})`,
     teamSearch: [],
     query: ""
-  })
+  }, () => localStorage.setItem("chosenTeam", this.state.chosenTeam))
 }
 
 render() {
