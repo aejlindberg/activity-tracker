@@ -5,6 +5,8 @@ import ActivityGrid from "../ActivityGrid/activityGrid.js"
 class MyPage extends React.Component {
 
 state = {
+  myTeam: "",
+  showModal: false,
   activities: [
     {
       name: "Gick",
@@ -49,6 +51,7 @@ getActivities = () => {
 
 handleGridClick = (activity, day) => {
   console.log("MYPAGE says GRID-CLICK!", activity, day)
+  this.showModal(activity, day)
 }
 
 handleNewText = e => this.setState({
@@ -74,6 +77,18 @@ handleSubmitNew = e => {
       localStorage.setItem("activities", dataToStorage)
     })
   }
+}
+
+showModal = (activity, day) => {
+  this.setState({
+    showModal: true,
+    modalActivity: activity,
+    modalDay: day
+  })
+}
+
+hideModal = () => {
+  this.setState({ showModal: false })
 }
 
 componentDidMount() {
@@ -104,13 +119,29 @@ render() {
         </form>
       </div>
       <div className="activity-popup">
-      Popup
+        <h1>React Modal</h1>
+          <Modal show={this.state.showModal} handleClose={this.hideModal}>
+            <p>{this.state.modalActivity}</p>
+            <p>{this.state.modalDay}</p>
+          </Modal>
       </div>
       <h1>MITT LAG: {this.state.myTeam}</h1>
     </div>
   )
 }
 
+}
+
+const Modal = ({ handleClose, show, children }) => {
+
+  return (
+    <div className={show ? "modal display-block" : "modal display-none"}>
+      <section className="modal-main">
+        {children}
+        <button onClick={handleClose}>close</button>
+      </section>
+    </div>
+  )
 }
 
 export default MyPage
