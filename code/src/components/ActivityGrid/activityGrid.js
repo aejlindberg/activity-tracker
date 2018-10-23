@@ -7,15 +7,15 @@ class ActivityGrid extends React.Component {
 state = {
   activities: [
     {
-      name: "Gick",
+      name: "Old1",
       dailyPoints: [0, 2, 0, 1, 0, 1, 0]
     },
     {
-      name: "Sprang",
+      name: "Old2",
       dailyPoints: [3, 0, 0, 0, 0, 2, 0]
     },
     {
-      name: "Cyklade",
+      name: "Old3",
       dailyPoints: [0, 0, 1, 0, 0, 0, 0]
     }
   ],
@@ -45,7 +45,8 @@ handleSubmitNew = e => {
 }
 
 handleClick = (actName, day) => {
-  console.log('You clicked', actName, day)
+  const { handleGridClick } = this.props
+  handleGridClick(actName, day)
 }
 
 render() {

@@ -5,6 +5,20 @@ import ActivityGrid from "../ActivityGrid/activityGrid.js"
 class MyPage extends React.Component {
 
 state = {
+  activities: [
+    {
+      name: "Gick",
+      dailyPoints: [0, 2, 0, 1, 0, 1, 0]
+    },
+    {
+      name: "Sprang",
+      dailyPoints: [3, 0, 0, 0, 0, 2, 0]
+    },
+    {
+      name: "Cyklade",
+      dailyPoints: [0, 0, 1, 0, 0, 0, 0]
+    }
+  ],
   myTeam: ""
 }
 
@@ -15,6 +29,9 @@ getChosenTeam = () => {
       myTeam: localStorage.getItem("chosenTeam")
     })
   }
+}
+handleGridClick = (activity, day) => {
+  console.log("MYPAGE says GRID-CLICK!", activity, day)
 }
 
 componentDidMount() {
@@ -31,7 +48,8 @@ render() {
         </Link>
       </div>
       <div className="activity-section-grid">
-        <ActivityGrid />
+        <ActivityGrid
+          handleGridClick={(activity, day) => this.handleGridClick(activity, day)} />
       </div>
       <div className="activity-popup">
       Popup
