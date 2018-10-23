@@ -4,45 +4,6 @@ import SingleActivity from "../SingleActivity/singleActivity.js"
 import "./activityGrid.scss"
 
 class ActivityGrid extends React.Component {
-state = {
-  activities: [
-    {
-      name: "Old1",
-      dailyPoints: [0, 2, 0, 1, 0, 1, 0]
-    },
-    {
-      name: "Old2",
-      dailyPoints: [3, 0, 0, 0, 0, 2, 0]
-    },
-    {
-      name: "Old3",
-      dailyPoints: [0, 0, 1, 0, 0, 0, 0]
-    }
-  ],
-  currentText: "",
-  placeHolderText: "Lägg till aktivitet"
-}
-
-handleNewText = e => this.setState({
-  currentText: e.target.value
-})
-
-handleSubmitNew = e => {
-  e.preventDefault()
-  if (!this.state.currentText.length) {
-    this.setState({ placeHolderText: "Namnge din aktivitet" })
-  } else {
-    const newActivity = {
-      name: this.state.currentText,
-      dailyPoints: [0, 0, 0, 0, 0, 0, 0]
-    }
-    this.setState({
-      activities: this.state.activities.concat(newActivity),
-      currentText: "",
-      placeHolderText: "Lägg till aktivitet"
-    })
-  }
-}
 
 handleClick = (actName, day) => {
   const { handleGridClick } = this.props
@@ -67,7 +28,7 @@ render() {
           </tr>
         </thead>
         <tbody>
-          {this.state.activities.map((activity, actIndex) => {
+          {this.props.activities.map((activity, actIndex) => {
             return <SingleActivity
               key={actIndex}
               id={actIndex}
@@ -78,15 +39,6 @@ render() {
           })}
         </tbody>
       </table>
-
-      <form onSubmit={this.handleSubmitNew}>
-        <input
-          type="text"
-          value={this.state.currentText}
-          placeholder={this.state.placeHolderText}
-          onChange={this.handleNewText} />
-        <input type="submit" value="+" />
-      </form>
 
     </div>
   )
