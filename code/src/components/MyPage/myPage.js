@@ -21,7 +21,8 @@ state = {
   ],
   currentText: "",
   placeHolderText: "Lägg till aktivitet",
-  myTeam: ""
+  myTeam: "",
+  test: {}
 }
 
 getChosenTeam = () => {
@@ -32,6 +33,20 @@ getChosenTeam = () => {
     })
   }
 }
+
+getActivities = () => {
+  if (localStorage.getItem("activities")) {
+    console.log("found localStorage")
+    const dataFromStorage = JSON.parse(localStorage.getItem("activities"))
+    console.log(dataFromStorage)
+    this.setState({
+      activities: dataFromStorage
+    }, () => console.log(this.state.test))
+  } else {
+    console.log("nothing in storage")
+  }
+}
+
 handleGridClick = (activity, day) => {
   console.log("MYPAGE says GRID-CLICK!", activity, day)
 }
@@ -42,6 +57,7 @@ handleNewText = e => this.setState({
 
 handleSubmitNew = e => {
   e.preventDefault()
+  const { currentText } = this.state
   if (!this.state.currentText.length) {
     this.setState({ placeHolderText: "Namnge din aktivitet" })
   } else {
@@ -53,12 +69,16 @@ handleSubmitNew = e => {
       activities: this.state.activities.concat(newActivity),
       currentText: "",
       placeHolderText: "Lägg till aktivitet"
+    }, () => {
+      const dataToStorage = JSON.stringify(this.state.activities)
+      localStorage.setItem("activities", dataToStorage)
     })
   }
 }
 
 componentDidMount() {
   this.getChosenTeam()
+  this.getActivities()
 }
 
 render() {
