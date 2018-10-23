@@ -6,7 +6,23 @@ class MyPage extends React.Component {
 
 state = {
   myTeam: "",
-  showModal: false
+  showModal: false,
+  activities: [
+    {
+      name: "Gick",
+      dailyPoints: [9, 2, 0, 1, 0, 1, 0]
+    },
+    {
+      name: "Sprang",
+      dailyPoints: [9, 0, 0, 0, 0, 2, 0]
+    },
+    {
+      name: "Cyklade",
+      dailyPoints: [9, 0, 1, 0, 0, 0, 0]
+    }
+  ],
+  currentText: "",
+  placeHolderText: "Lägg till aktivitet"
 }
 
 getChosenTeam = () => {
@@ -14,6 +30,30 @@ getChosenTeam = () => {
   if (localStorage.getItem("chosenTeam")) {
     this.setState({
       myTeam: localStorage.getItem("chosenTeam")
+    })
+  }
+}
+handleGridClick = (activity, day) => {
+  console.log("MYPAGE says GRID-CLICK!", activity, day)
+}
+
+handleNewText = e => this.setState({
+  currentText: e.target.value
+})
+
+handleSubmitNew = e => {
+  e.preventDefault()
+  if (!this.state.currentText.length) {
+    this.setState({ placeHolderText: "Namnge din aktivitet" })
+  } else {
+    const newActivity = {
+      name: this.state.currentText,
+      dailyPoints: [0, 0, 0, 0, 0, 0, 0]
+    }
+    this.setState({
+      activities: this.state.activities.concat(newActivity),
+      currentText: "",
+      placeHolderText: "Lägg till aktivitet"
     })
   }
 }
@@ -40,7 +80,17 @@ render() {
         </Link>
       </div>
       <div className="activity-section-grid">
-        <ActivityGrid />
+        <ActivityGrid
+          activities={this.state.activities}
+          handleGridClick={(activity, day) => this.handleGridClick(activity, day)} />
+        <form onSubmit={this.handleSubmitNew}>
+          <input
+            type="text"
+            value={this.state.currentText}
+            placeholder={this.state.placeHolderText}
+            onChange={this.handleNewText} />
+          <input type="submit" value="+" />
+        </form>
       </div>
       <div className="activity-popup">
         <h1>React Modal</h1>
