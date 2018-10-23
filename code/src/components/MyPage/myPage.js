@@ -33,8 +33,10 @@ getChosenTeam = () => {
     })
   }
 }
+
 handleGridClick = (activity, day) => {
   console.log("MYPAGE says GRID-CLICK!", activity, day)
+  this.showModal(activity, day)
 }
 
 handleNewText = e => this.setState({
@@ -58,8 +60,12 @@ handleSubmitNew = e => {
   }
 }
 
-showModal = () => {
-  this.setState({ showModal: true })
+showModal = (activity, day) => {
+  this.setState({
+    showModal: true,
+    modalActivity: activity,
+    modalDay: day
+  })
 }
 
 hideModal = () => {
@@ -94,11 +100,10 @@ render() {
       </div>
       <div className="activity-popup">
         <h1>React Modal</h1>
-          <Modal show={this.state.showModal} handleClose={this.hideModal} >
-            <p>Modal</p>
-            <p>Data</p>
+          <Modal show={this.state.showModal} handleClose={this.hideModal}>
+            <p>{this.state.modalActivity}</p>
+            <p>{this.state.modalDay}</p>
           </Modal>
-          <button type='button' onClick={this.showModal}>Open</button>
       </div>
       <h1>MITT LAG: {this.state.myTeam}</h1>
     </div>
