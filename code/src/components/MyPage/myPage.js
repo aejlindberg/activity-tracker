@@ -5,7 +5,8 @@ import ActivityGrid from "../ActivityGrid/activityGrid.js"
 class MyPage extends React.Component {
 
 state = {
-  myTeam: ""
+  myTeam: "",
+  showModal: false
 }
 
 getChosenTeam = () => {
@@ -15,6 +16,14 @@ getChosenTeam = () => {
       myTeam: localStorage.getItem("chosenTeam")
     })
   }
+}
+
+showModal = () => {
+  this.setState({ showModal: true })
+}
+
+hideModal = () => {
+  this.setState({ showModal: false })
 }
 
 componentDidMount() {
@@ -34,13 +43,30 @@ render() {
         <ActivityGrid />
       </div>
       <div className="activity-popup">
-      Popup
+        <h1>React Modal</h1>
+          <Modal show={this.state.showModal} handleClose={this.hideModal} >
+            <p>Modal</p>
+            <p>Data</p>
+          </Modal>
+          <button type='button' onClick={this.showModal}>Open</button>
       </div>
       <h1>MITT LAG: {this.state.myTeam}</h1>
     </div>
   )
 }
 
+}
+
+const Modal = ({ handleClose, show, children }) => {
+
+  return (
+    <div className={show ? "modal display-block" : "modal display-none"}>
+      <section className="modal-main">
+        {children}
+        <button onClick={handleClose}>close</button>
+      </section>
+    </div>
+  )
 }
 
 export default MyPage
