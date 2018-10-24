@@ -39,35 +39,39 @@ render() {
   return (
     <main>
       <div className="tp-wrapper">
-        <div className="tp-searchContainer">
-          <div className="tp-searchSection">
-            <div className="tp-input">
-              <i className="fas fa-search" />
-              <h2>Välj ett lag att stödja</h2>
-              <input
-                type="text"
-                value={query}
-                onChange={this.handleTeamSearch}
-                placeholder="Sök din förening" />
-            </div>
-            <div className="tp-listItems">
-              <ul>
-                {teamSearch.map(team => (
-                  <SearchListItem
-                    key={team.id}
-                    name={team.name}
-                    city={team.city}
-                    handleTeamChoice={this.handleTeamChoice} />
-                ))}
-              </ul>
-            </div>
+        <div className="tp-searchSection">
+          <div className="tp-search-icon">
+            <i className="fas fa-search fa-6x" />
+          </div>
+          <div className="tp-input">
+            <h2>Välj ett lag att stödja</h2>
+            <input
+              className="input"
+              type="text"
+              value={query}
+              onChange={this.handleTeamSearch}
+              placeholder="Sök din förening" />
           </div>
         </div>
+        <div className="tp-listItems">
+          <ul>
+            {teamSearch.map(team => (
+              <SearchListItem
+                key={team.id}
+                name={team.name}
+                city={team.city}
+                handleTeamChoice={this.handleTeamChoice} />
+            ))}
+          </ul>
+        </div>
+        <div className="chosen-team">
+          <h3>Du har valt: &nbsp;</h3>
+          {this.state.chosenTeam}
+        </div>
+        <Link to="/mypage">
+          <button type="button">Gå till min sida</button>
+        </Link>
       </div>
-      <div className="chosen-team">{this.state.chosenTeam}</div>
-      <Link to="/mypage">
-        <button type="button">Gå till min sida</button>
-      </Link>
     </main>
   )
 }

@@ -1,25 +1,68 @@
 @import "../../colors.scss";
 
-.tp-searchContainer {
+
+.tp-wrapper {
   background-image: url("/images/backgroundTeamPage.png");
   background-size: cover;
   margin: 0 auto;
   height: 500px;
   max-width: 1200px;
   position: relative;
-  top: -20px;
-  img {
-  }
 }
 
 .tp-searchSection {
-  background-color: pink;
-}
-
-.tp-input {
   background-color: $white;
   opacity: 0.8;
+  margin-top: 30px;
+  position: absolute;
+  display: flex;
+  align-items: center;
   margin: 20px;
-  position: relative;
-  width: 100%;
+  width: calc(100% - 100px);
+  padding: 30px;
+}
+
+.tp-search-icon {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  width: 50px;
+}
+.tp-input{
+  margin-left: 70px;
+}
+.input {
+  font-size: 20px;
+}
+
+.tp-listItems {
+  background-color: $white;
+  opacity: 0.8;
+  height: auto;
+  position: absolute;
+  top: 182px;
+  left: 20px;
+  width: calc(100% - 40px);
+}
+
+ul {
+  -webkit-columns: 100px 2; /* Chrome, Safari, Opera */
+  -moz-columns: 100px 2; /* Firefox */
+  columns: 100px 2;
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+li {
+  border-bottom: 1px solid $gray;
+  width: 50%;
+  padding:5px;
+  cursor: pointer;
+}
+
+.chosen-team {
+  display: flex;
+  align-items: baseline;
+  position: absolute;
+  bottom: -60px;
 }

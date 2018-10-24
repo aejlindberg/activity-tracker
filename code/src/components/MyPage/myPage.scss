@@ -1,7 +1,17 @@
 @import "../../colors.scss";
 
+%button-shared {
+  background-color: $red;
+  border: none;
+  color: $white;
+  height: 35px;
+  padding: 0 20px;
+}
+
 .wrapper {
+  margin: 0 auto;
   padding: 20px;
+  width: 1200px;
 }
 
 .mp-header-section {
@@ -15,19 +25,44 @@
     flex-direction: column;
     
     .mp-header-section-button {
-      border: 1px solid #333;
+      @extend %button-shared;
     }
   }
 }
 
 .activity-section-grid {
-  background-color: lightyellow;
-  height: 400px;
+  height: auto;
   width: 100%;
+  
+  .activity-section-form {
+    margin-top: 20px;
+    position: relative;
+    width: 250px;
+    
+    input {
+      border: 1px solid $gray;
+      height: 30px;
+      padding: 5px;
+      padding-right: 85px;
+      width: 170px;
+    }
+    
+    .add-activity {
+      @extend %button-shared;
+      height: 30px;
+      padding: 0 10px;
+      position: absolute;
+      margin-left: 20px;
+      right: -5px;
+      top: 50%;
+      transform: translate(0, -50%);
+    }  
+  }
 }
 
 .activity-section-log {
   background-color: lightpink;
+  margin-top: 20px;
 }
 
 
@@ -66,13 +101,8 @@
     }
     
     .choose {
-      background-color: $red;
-      border: none;
-      color: $white;
-      display: block;
-      height: 35px;
+      @extend %button-shared;
       margin-top: 20px;
-      width: 80px;
     }
     
     .close {
