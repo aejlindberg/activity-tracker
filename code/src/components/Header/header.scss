@@ -2,14 +2,15 @@
 
 .header {
   background: $red;
-  height: 44px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
 
     h1 {
       color: #fff;
-      font-size: 15px;
+      font-size: 24px;
+      line-height: 15px;
       font-weight: 700;
       text-transform: uppercase;
     }
