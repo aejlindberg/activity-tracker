@@ -7,11 +7,7 @@ class Header extends React.Component {
   render() {
     return (
       <header className="header">
-        <nav>
-          <Link to="/">TeamPage</Link>
-          <Link to="/mypage">MyPage</Link>
-          <Link to="/stats">StatsPage</Link>
-        </nav>
+        <h1>Gräsroten</h1>
       </header>
     )
   }
