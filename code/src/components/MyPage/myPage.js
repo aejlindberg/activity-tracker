@@ -43,7 +43,10 @@ getWorkouts = () => {
     const dataFromStorage = JSON.parse(localStorage.getItem("workouts"))
     this.setState({
       workouts: dataFromStorage
-    }, () => console.log(this.state.workouts))
+    }, () => {
+      console.log(this.state.workouts)
+      this.updateGrid()
+    })
   }
 }
 
@@ -115,7 +118,6 @@ updateGrid = () => {
   for (let i = 0; i < numberOfActivities; i++) {
     updateToGrid.push([0, 0, 0, 0, 0, 0, 0])
   }
-  console.log("AllMyWorkouts: ", this.state.workouts)
   this.state.workouts.map(workout => {
       const activityIndex = this.state.activities.indexOf(workout.name)
       const activityWeek = updateToGrid[activityIndex]
@@ -123,7 +125,9 @@ updateGrid = () => {
       activityWeek[workout.day] = newPoints
       updateToGrid[activityIndex] = activityWeek
   })
-  console.table(updateToGrid)
+  this.setState({
+    weekPoints: updateToGrid
+  }, () => console.table(this.state.weekPoints))
 }
 componentDidMount() {
   this.getChosenTeam()
@@ -169,6 +173,7 @@ render() {
       <div className="activity-section-grid">
         <ActivityGrid
           activities={this.state.activities}
+          weekPoints={this.state.weekPoints}
           handleGridClick={(activity, day) => this.handleGridClick(activity, day)} />
         <form onSubmit={this.handleSubmitNew}>
           <input
