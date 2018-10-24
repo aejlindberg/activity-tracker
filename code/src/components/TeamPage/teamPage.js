@@ -69,7 +69,7 @@ render() {
           {this.state.chosenTeam}
         </div>
         <Link to="/mypage">
-          <button type="button">Gå till min sida</button>
+          <button type="button" className="button-my-page">Gå till min sida</button>
         </Link>
       </div>
     </main>
