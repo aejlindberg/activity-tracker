@@ -97,6 +97,32 @@ componentDidMount() {
 }
 
 render() {
+  let selectedDay = ""
+  switch (this.state.modalDay) {
+    case 0:
+      selectedDay = "Måndag"
+      break
+    case 1:
+      selectedDay = "Tisdag"
+      break
+    case 2:
+      selectedDay = "Onsdag"
+      break
+    case 3:
+      selectedDay = "Torsdag"
+      break
+    case 4:
+      selectedDay = "Fredag"
+      break
+    case 5:
+      selectedDay = "Lördag"
+      break
+    case 6:
+      selectedDay = "Söndag"
+      break
+    default:
+      selectedDay = "Ingen dag vald"
+  }
   return (
     <div className="wrapper">
       <div className="mp-header-section">
@@ -119,11 +145,15 @@ render() {
         </form>
       </div>
       <div className="activity-popup">
-        <h1>React Modal</h1>
-          <Modal show={this.state.showModal} handleClose={this.hideModal}>
-            <p>{this.state.modalActivity}</p>
-            <p>{this.state.modalDay}</p>
-          </Modal>
+        <Modal show={this.state.showModal} handleClose={this.hideModal}>
+          <p>{this.state.modalActivity}</p>
+          <p>{selectedDay}</p>
+          <select>
+            <option value="easy">Lätt</option>
+            <option value="medium">Normal</option>
+            <option value="hard">Intensiv</option>
+          </select>
+        </Modal>
       </div>
       <h1>MITT LAG: {this.state.myTeam}</h1>
     </div>
