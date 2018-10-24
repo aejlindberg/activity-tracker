@@ -130,6 +130,7 @@ updateGrid = () => {
     weekPoints: updateToGrid
   }, () => console.table(this.state.weekPoints))
 }
+
 componentDidMount() {
   this.getChosenTeam()
   this.getActivities()
@@ -168,7 +169,7 @@ render() {
       <div className="mp-header-section">
         <h1>Min sida</h1>
         <div className="mp-header-section-team">
-          <p>Mitt lag: {this.state.myTeam}</p>
+          <p><strong>Mitt lag:</strong> {this.state.myTeam}</p>
           <Link to="/">
             <button className="mp-header-section-button">Byt förening</button>
           </Link>

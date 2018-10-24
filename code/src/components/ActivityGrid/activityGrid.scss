@@ -14,7 +14,17 @@
     }
     
     .table-activity-name {
+      text-align: left;
+      width: auto;
+    }
+    
+    .table-clickable {
+      cursor: pointer;
       
+      &:focus, &:hover {
+        background-color: $red;
+        color: $white;
+      }
     }
   }
 }

@@ -34,9 +34,8 @@
     input {
       border: 1px solid $gray;
       height: 30px;
-      padding: 5px;
-      padding-right: 85px;
-      width: 170px;
+      padding: 5px 85px 5px 10px;
+      width: 165px;
     }
     
     .add-activity {
@@ -77,8 +76,7 @@
     width: 40%;
     
     .mp-modal-content {
-      
-      
+      height: 100%;
       .mp-modal-workout-form {
         align-items: center;
         display: flex;
