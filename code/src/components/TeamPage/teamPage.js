@@ -33,6 +33,18 @@ handleTeamChoice = (teamName, teamCity) => {
   }, () => localStorage.setItem("chosenTeam", this.state.chosenTeam))
 }
 
+getChosenTeam = () => {
+  if (localStorage.getItem("chosenTeam")) {
+    this.setState({
+      chosenTeam: localStorage.getItem("chosenTeam")
+    })
+  }
+}
+
+componentDidMount() {
+  this.getChosenTeam()
+}
+
 render() {
   const { query, teamSearch } = this.state
 
@@ -69,7 +81,7 @@ render() {
           {this.state.chosenTeam}
         </div>
         <Link to="/mypage">
-          <button type="button">Gå till min sida</button>
+          <button type="button" className="button-my-page">Gå till min sida</button>
         </Link>
       </div>
     </main>

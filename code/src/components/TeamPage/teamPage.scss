@@ -1,7 +1,7 @@
 @import "../../colors.scss";
 @import "../../extensions.scss";
 
-button {
+.button-my-page {
   @extend %button-shared;
   bottom: -100px;
   margin-bottom: 10px;
