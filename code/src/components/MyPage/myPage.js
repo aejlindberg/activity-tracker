@@ -10,8 +10,7 @@ state = {
   activities: [
     "Gick",
     "Sprang",
-    "Cyklade",
-    "Nya Arrayen"
+    "Cyklade"
   ],
   workouts: [],
   currentText: "",
@@ -105,6 +104,7 @@ handleWorkoutIntensity = e => {
 
 addWorkout = e => {
   e.preventDefault()
+  this.hideModal()
   const newWorkout = {
     name: this.state.modalActivity,
     day: this.state.modalDay,
@@ -114,7 +114,7 @@ addWorkout = e => {
     workouts: this.state.workouts.concat(newWorkout)
   }, () => {
     const workoutData = JSON.stringify(this.state.workouts)
-    localStorage.setItem("workouts", workoutData)})
+    localStorage.setItem("workouts", workoutData) })
 }
 
 componentDidMount() {
@@ -154,9 +154,12 @@ render() {
     <div className="wrapper">
       <div className="mp-header-section">
         <h1>Min sida</h1>
-        <Link to="/">
-          <button className="mp-header-section-button">Byt förening</button>
-        </Link>
+        <div className="mp-header-section-team">
+          <p>Mitt lag: {this.state.myTeam}</p>
+          <Link to="/">
+            <button className="mp-header-section-button">Byt förening</button>
+          </Link>
+        </div>
       </div>
       <div className="activity-section-grid">
         <ActivityGrid
@@ -168,24 +171,29 @@ render() {
             value={this.state.currentText}
             placeholder={this.state.placeHolderText}
             onChange={this.handleNewText} />
-          <input type="submit" value="+" />
+          <button type="submit">&#43;</button>
         </form>
       </div>
-      <div className="activity-popup">
         <Modal show={this.state.showModal} handleClose={this.hideModal}>
-          <p>{this.state.modalActivity}</p>
-          <p>{selectedDay}</p>
+          <div className="mp-modal-content">
+            <h1>{selectedDay}</h1>
+            <label htmlFor="intensity-select">
+              <p>
+                Nedan kan du välja hur intensivt ditt pass var när du <strong>{(this.state.modalActivity).toLowerCase()}</strong> den här dagen.
+              </p>
+            </label>
           <form onSubmit={this.addWorkout}>
-            <select onChange={this.handleWorkoutIntensity}>
-              <option value="1">Lätt</option>
-              <option value="2" selected="selected">Normal</option>
-              <option value="3">Intensiv</option>
-            </select>
-            <button type="submit">Välj</button>
+            <div className="mp-modal-workout-form">
+              <select id="intensity-select" onChange={this.handleWorkoutIntensity}>
+                <option value="1">Lätt</option>
+                <option value="2" selected="selected">Normalt</option>
+                <option value="3">Intensivt</option>
+              </select>
+            </div>
+            <button className="choose" type="submit">Lägg till</button>
           </form>
+          </div>
         </Modal>
-      </div>
-      <h1>MITT LAG: {this.state.myTeam}</h1>
     </div>
   )
 }
@@ -195,10 +203,10 @@ render() {
 const Modal = ({ handleClose, show, children }) => {
 
   return (
-    <div className={show ? "modal display-block" : "modal display-none"}>
-      <section className="modal-main">
+    <div className={show ? "mp-modal display-block" : "mp-modal display-none"}>
+      <section className="mp-modal-main">
         {children}
-        <button onClick={handleClose}>close</button>
+        <button className="close" onClick={handleClose}>&times;</button>
       </section>
     </div>
   )
