@@ -1,6 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import SearchListItem from "../SearchListItem/searchListItem.js"
+import "./teamPage.scss"
 
 class TeamPage extends React.Component {
 
@@ -37,22 +38,32 @@ render() {
 
   return (
     <main>
-      <h1>Välkommen</h1>
-      <h2>Välj ett lag att stödja</h2>
-      <input
-        type="text"
-        value={query}
-        onChange={this.handleTeamSearch}
-        placeholder="Sök din förening" />
-      <ul>
-        {teamSearch.map(team => (
-          <SearchListItem
-            key={team.id}
-            name={team.name}
-            city={team.city}
-            handleTeamChoice={this.handleTeamChoice} />
-        ))}
-      </ul>
+      <div className="tp-wrapper">
+        <div className="tp-searchContainer">
+          <div className="tp-searchSection">
+            <div className="tp-input">
+              <i className="fas fa-search" />
+              <h2>Välj ett lag att stödja</h2>
+              <input
+                type="text"
+                value={query}
+                onChange={this.handleTeamSearch}
+                placeholder="Sök din förening" />
+            </div>
+            <div className="tp-listItems">
+              <ul>
+                {teamSearch.map(team => (
+                  <SearchListItem
+                    key={team.id}
+                    name={team.name}
+                    city={team.city}
+                    handleTeamChoice={this.handleTeamChoice} />
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="chosen-team">{this.state.chosenTeam}</div>
       <Link to="/mypage">
         <button type="button">Gå till min sida</button>
