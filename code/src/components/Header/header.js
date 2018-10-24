@@ -11,7 +11,6 @@ class Header extends React.Component {
           <Link to="/">TeamPage</Link>
           <Link to="/mypage">MyPage</Link>
           <Link to="/stats">StatsPage</Link>
-          <Link to="/temp">Grid</Link>
         </nav>
       </header>
     )
