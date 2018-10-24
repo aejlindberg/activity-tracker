@@ -8,7 +8,13 @@ handleDayClick = (dayIndex) => {
 }
 
 render() {
-  const days = [0, 0, 0, 0, 0, 0, 0]
+  let days = []
+  if (this.props.activityPoints) {
+    days = this.props.activityPoints
+  } else {
+    days = [0, 0, 0, 0, 0, 0, 0]
+  }
+
   return (
     <tr>
       <td>{this.props.name}</td>

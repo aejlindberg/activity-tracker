@@ -1,50 +1,118 @@
+@import "../../colors.scss";
+
+%button-shared {
+  background-color: $red;
+  border: none;
+  color: $white;
+  height: 35px;
+  padding: 0 20px;
+}
+
 .wrapper {
+  margin: 0 auto;
   padding: 20px;
+  width: 1200px;
 }
 
 .mp-header-section {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
-  button {
-    border: 1px solid #333;
+  
+  .mp-header-section-team {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    
+    .mp-header-section-button {
+      @extend %button-shared;
+    }
   }
 }
 
 .activity-section-grid {
-  background-color: lightyellow;
-  height: 400px;
+  height: auto;
   width: 100%;
-}
-
-.activity-popup-button {
-  border: 1px solid #333;
-  border-radius: 100%;
+  
+  .activity-section-form {
+    margin-top: 20px;
+    position: relative;
+    width: 250px;
+    
+    input {
+      border: 1px solid $gray;
+      height: 30px;
+      padding: 5px;
+      padding-right: 85px;
+      width: 170px;
+    }
+    
+    .add-activity {
+      @extend %button-shared;
+      height: 30px;
+      padding: 0 10px;
+      position: absolute;
+      margin-left: 20px;
+      right: -5px;
+      top: 50%;
+      transform: translate(0, -50%);
+    }  
+  }
 }
 
 .activity-section-log {
   background-color: lightpink;
+  margin-top: 20px;
 }
 
 
-.modal {
+.mp-modal {
+  background: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  left: 0;
   position: fixed;
   top: 0;
-  left: 0;
-  width:100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
 
-  .modal-main {
-    position:fixed;
-    background: white;
-    width: 80%;
+  .mp-modal-main {
+    background: $white;
     height: auto;
-    top:50%;
-    left:50%;
+    left: 50%;
+    padding: 20px;
+    position:fixed;
+    top: 50%;
     transform: translate(-50%,-50%);
+    width: 40%;
+    
+    .mp-modal-content {
+      
+      
+      .mp-modal-workout-form {
+        align-items: center;
+        display: flex;
+        
+        select {
+          border: 1px solid $gray;
+          height: 35px;
+          margin-left: 10px;
+          padding: 5px;
+        }
+      }
+    }
+    
+    .choose {
+      @extend %button-shared;
+      margin-top: 20px;
+    }
+    
+    .close {
+      background-color: transparent;
+      border: none;
+      font-size: 48px;
+      position: absolute;
+      right: 5px;
+      top: 0;
+    }  
   }
 }
 
