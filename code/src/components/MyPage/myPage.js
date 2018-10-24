@@ -8,18 +8,10 @@ state = {
   myTeam: "",
   showModal: false,
   activities: [
-    {
-      name: "Gick",
-      dailyPoints: [0, 0, 0, 0, 0, 0, 0]
-    },
-    {
-      name: "Sprang",
-      dailyPoints: [0, 0, 0, 0, 0, 0, 0]
-    },
-    {
-      name: "Cyklade",
-      dailyPoints: [0, 0, 0, 0, 0, 0, 0]
-    }
+    "Gick",
+    "Sprang",
+    "Cyklade",
+    "Nya Arrayen"
   ],
   workouts: [],
   currentText: "",
@@ -79,10 +71,9 @@ handleSubmitNew = e => {
   if (!this.state.currentText.length) {
     this.setState({ placeHolderText: "Namnge din aktivitet" })
   } else {
-    const newActivity = {
-      name: this.state.currentText,
-      dailyPoints: [0, 0, 0, 0, 0, 0, 0]
-    }
+    const newActivity = [
+      this.state.currentText
+    ]
     this.setState({
       activities: this.state.activities.concat(newActivity),
       currentText: "",

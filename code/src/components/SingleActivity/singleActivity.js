@@ -8,10 +8,11 @@ handleDayClick = (dayIndex) => {
 }
 
 render() {
+  const days = [0, 0, 0, 0, 0, 0, 0]
   return (
     <tr>
       <td>{this.props.name}</td>
-      {this.props.days.map((day, index) => {
+      {days.map((day, index) => {
         return <td
           key={index}
           onClick={() => this.handleDayClick(index)}
