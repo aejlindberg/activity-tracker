@@ -10,21 +10,23 @@ state = {
   activities: [
     {
       name: "Gick",
-      dailyPoints: [9, 2, 0, 1, 0, 1, 0]
+      dailyPoints: [0, 0, 0, 0, 0, 0, 0]
     },
     {
       name: "Sprang",
-      dailyPoints: [9, 0, 0, 0, 0, 2, 0]
+      dailyPoints: [0, 0, 0, 0, 0, 0, 0]
     },
     {
       name: "Cyklade",
-      dailyPoints: [9, 0, 1, 0, 0, 0, 0]
+      dailyPoints: [0, 0, 0, 0, 0, 0, 0]
     }
   ],
+  workouts: [],
   currentText: "",
   placeHolderText: "Lägg till aktivitet",
-  myTeam: "",
-  test: {}
+  modalActivity: "Gick",
+  modalDay: 0,
+  chosenIntensity: 2
 }
 
 getChosenTeam = () => {
@@ -46,6 +48,19 @@ getActivities = () => {
     }, () => console.log(this.state.test))
   } else {
     console.log("nothing in storage")
+  }
+}
+
+getWorkouts = () => {
+  if (localStorage.getItem("workouts")) {
+    console.log("found workouts in localStorage")
+    const dataFromStorage = JSON.parse(localStorage.getItem("workouts"))
+    console.log(dataFromStorage)
+    this.setState({
+      workouts: dataFromStorage
+    })
+  } else {
+    console.log("No workouts in storage")
   }
 }
 
@@ -91,9 +106,30 @@ hideModal = () => {
   this.setState({ showModal: false })
 }
 
+handleWorkoutIntensity = e => {
+  this.setState({
+    chosenIntensity: e.target.value
+  })
+}
+
+addWorkout = e => {
+  e.preventDefault()
+  const newWorkout = {
+    name: this.state.modalActivity,
+    day: this.state.modalDay,
+    intensity: Number(this.state.chosenIntensity)
+  }
+  this.setState({
+    workouts: this.state.workouts.concat(newWorkout)
+  }, () => {
+    const workoutData = JSON.stringify(this.state.workouts)
+    localStorage.setItem("workouts", workoutData)})
+}
+
 componentDidMount() {
   this.getChosenTeam()
   this.getActivities()
+  this.getWorkouts()
 }
 
 render() {
@@ -148,11 +184,14 @@ render() {
         <Modal show={this.state.showModal} handleClose={this.hideModal}>
           <p>{this.state.modalActivity}</p>
           <p>{selectedDay}</p>
-          <select>
-            <option value="easy">Lätt</option>
-            <option value="medium">Normal</option>
-            <option value="hard">Intensiv</option>
-          </select>
+          <form onSubmit={this.addWorkout}>
+            <select onChange={this.handleWorkoutIntensity}>
+              <option value="1">Lätt</option>
+              <option value="2" selected="selected">Normal</option>
+              <option value="3">Intensiv</option>
+            </select>
+            <button type="submit">Välj</button>
+          </form>
         </Modal>
       </div>
       <h1>MITT LAG: {this.state.myTeam}</h1>
