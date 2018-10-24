@@ -33,6 +33,7 @@ render() {
               key={actIndex}
               id={actIndex}
               name={activity}
+              activityPoints={this.props.weekPoints[actIndex]}
               handleDayClick={day => this.handleClick(activity, day)}
             />
           })}
