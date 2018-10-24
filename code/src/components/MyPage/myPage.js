@@ -174,14 +174,19 @@ render() {
         <ActivityGrid
           activities={this.state.activities}
           handleGridClick={(activity, day) => this.handleGridClick(activity, day)} />
-        <form onSubmit={this.handleSubmitNew}>
-          <input
-            type="text"
-            value={this.state.currentText}
-            placeholder={this.state.placeHolderText}
-            onChange={this.handleNewText} />
-          <button type="submit">&#43;</button>
-        </form>
+        <div className="activity-section-form">
+          <form onSubmit={this.handleSubmitNew}>
+            <input
+              type="text"
+              value={this.state.currentText}
+              placeholder={this.state.placeHolderText}
+              onChange={this.handleNewText} />
+            <button className="add-activity" type="submit">Lägg till</button>
+          </form>
+        </div>
+      </div>
+      <div className="activity-section-log">
+        Activity Log
       </div>
         <Modal show={this.state.showModal} handleClose={this.hideModal}>
           <div className="mp-modal-content">
