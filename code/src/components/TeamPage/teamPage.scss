@@ -49,7 +49,7 @@ button {
   opacity: 0.8;
   height: auto;
   position: absolute;
-  top: 182px;
+  top: 186px;
   left: 20px;
   width: calc(100% - 40px);
 
@@ -63,8 +63,8 @@ button {
 
   li {
     border-bottom: 1px solid $gray;
-    width: 50%;
-    padding:5px;
+    width: 80%;
+    padding:0 5px;
     cursor: pointer;
   }
 }
