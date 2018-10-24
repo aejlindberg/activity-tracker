@@ -18,7 +18,6 @@ class App extends React.Component {
             <Route exact path="/" component={TeamPage} />
             <Route exact path="/mypage" component={MyPage} />
             <Route exact path="/stats" component={StatsPage} />
-            <Route exact path="/temp" component={ActivityGrid} />
           </Switch>
         </div>
       </Router>
