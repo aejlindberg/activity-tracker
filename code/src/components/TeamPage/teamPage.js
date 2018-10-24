@@ -33,6 +33,18 @@ handleTeamChoice = (teamName, teamCity) => {
   }, () => localStorage.setItem("chosenTeam", this.state.chosenTeam))
 }
 
+getChosenTeam = () => {
+  if (localStorage.getItem("chosenTeam")) {
+    this.setState({
+      chosenTeam: localStorage.getItem("chosenTeam")
+    })
+  }
+}
+
+componentDidMount() {
+  this.getChosenTeam()
+}
+
 render() {
   const { query, teamSearch } = this.state
 
