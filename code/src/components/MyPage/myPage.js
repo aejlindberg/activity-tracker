@@ -205,7 +205,7 @@ render() {
             <div className="mp-modal-workout-form">
               <select id="intensity-select" onChange={this.handleWorkoutIntensity}>
                 <option value="1">Lätt</option>
-                <option value="2" selected="selected">Normalt</option>
+                <option value="2" selected>Normalt</option>
                 <option value="3">Intensivt</option>
               </select>
             </div>

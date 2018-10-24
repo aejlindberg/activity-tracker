@@ -17,7 +17,7 @@ render() {
 
   return (
     <tr>
-      <td>{this.props.name}</td>
+      <td className="table-activity-name">{this.props.name}</td>
       {days.map((day, index) => {
         return <td
           key={index}

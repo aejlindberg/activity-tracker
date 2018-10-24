@@ -1,17 +1,9 @@
 @import "../../colors.scss";
-
-%button-shared {
-  background-color: $red;
-  border: none;
-  color: $white;
-  height: 35px;
-  padding: 0 20px;
-}
+@import "../../extensions.scss";
 
 .wrapper {
   margin: 0 auto;
   padding: 20px;
-  width: 1200px;
 }
 
 .mp-header-section {
