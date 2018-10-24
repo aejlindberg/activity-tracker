@@ -11,6 +11,7 @@ handleClick = (actName, day) => {
 }
 
 render() {
+  console.log("mina props", this.props.activities)
   return (
     <div className="grid-container">
       <h2>Min vecka:</h2>
@@ -32,9 +33,8 @@ render() {
             return <SingleActivity
               key={actIndex}
               id={actIndex}
-              name={activity.name}
-              days={activity.dailyPoints}
-              handleDayClick={day => this.handleClick(activity.name, day)}
+              name={activity}
+              handleDayClick={day => this.handleClick(activity, day)}
             />
           })}
         </tbody>
