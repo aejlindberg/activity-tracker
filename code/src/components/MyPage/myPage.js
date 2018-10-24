@@ -22,7 +22,6 @@ state = {
 }
 
 getChosenTeam = () => {
-  console.log("My team: ", localStorage.getItem("chosenTeam"))
   if (localStorage.getItem("chosenTeam")) {
     this.setState({
       myTeam: localStorage.getItem("chosenTeam")
@@ -32,32 +31,23 @@ getChosenTeam = () => {
 
 getActivities = () => {
   if (localStorage.getItem("activities")) {
-    console.log("found localStorage")
     const dataFromStorage = JSON.parse(localStorage.getItem("activities"))
-    console.log(dataFromStorage)
     this.setState({
       activities: dataFromStorage
-    }, () => console.log(this.state.test))
-  } else {
-    console.log("nothing in storage")
+    })
   }
 }
 
 getWorkouts = () => {
   if (localStorage.getItem("workouts")) {
-    console.log("found workouts in localStorage")
     const dataFromStorage = JSON.parse(localStorage.getItem("workouts"))
-    console.log(dataFromStorage)
     this.setState({
       workouts: dataFromStorage
     })
-  } else {
-    console.log("No workouts in storage")
   }
 }
 
 handleGridClick = (activity, day) => {
-  console.log("MYPAGE says GRID-CLICK!", activity, day)
   this.showModal(activity, day)
 }
 
