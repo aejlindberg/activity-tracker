@@ -1,1 +1,25 @@
+@import "colors.scss";
 
+.tp-searchContainer {
+  background-image: url("/images/backgroundTeamPage.png");
+  background-size: cover;
+  margin: 0 auto;
+  height: 500px;
+  max-width: 1200px;
+  position: relative;
+  top: -20px;
+  img {
+  }
+}
+
+.tp-searchSection {
+  background-color: pink;
+}
+
+.tp-input {
+  background-color: $white;
+  opacity: 0.8;
+  margin: 20px;
+  position: relative;
+  width: 100%;
+}

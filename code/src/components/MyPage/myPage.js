@@ -17,11 +17,11 @@ state = {
   placeHolderText: "Lägg till aktivitet",
   modalActivity: "Gick",
   modalDay: 0,
-  chosenIntensity: 2
+  chosenIntensity: 2,
+  weekPoints: []
 }
 
 getChosenTeam = () => {
-  console.log("My team: ", localStorage.getItem("chosenTeam"))
   if (localStorage.getItem("chosenTeam")) {
     this.setState({
       myTeam: localStorage.getItem("chosenTeam")
@@ -31,32 +31,23 @@ getChosenTeam = () => {
 
 getActivities = () => {
   if (localStorage.getItem("activities")) {
-    console.log("found localStorage")
     const dataFromStorage = JSON.parse(localStorage.getItem("activities"))
-    console.log(dataFromStorage)
     this.setState({
       activities: dataFromStorage
-    }, () => console.log(this.state.test))
-  } else {
-    console.log("nothing in storage")
+    })
   }
 }
 
 getWorkouts = () => {
   if (localStorage.getItem("workouts")) {
-    console.log("found workouts in localStorage")
     const dataFromStorage = JSON.parse(localStorage.getItem("workouts"))
-    console.log(dataFromStorage)
     this.setState({
       workouts: dataFromStorage
-    })
-  } else {
-    console.log("No workouts in storage")
+    }, () => console.log(this.state.workouts))
   }
 }
 
 handleGridClick = (activity, day) => {
-  console.log("MYPAGE says GRID-CLICK!", activity, day)
   this.showModal(activity, day)
 }
 
@@ -114,9 +105,27 @@ addWorkout = e => {
     workouts: this.state.workouts.concat(newWorkout)
   }, () => {
     const workoutData = JSON.stringify(this.state.workouts)
-    localStorage.setItem("workouts", workoutData) })
+    localStorage.setItem("workouts", workoutData)
+    this.updateGrid()
+  })
 }
 
+updateGrid = () => {
+  const numberOfActivities = this.state.activities.length
+  const updateToGrid = []
+  for (let i = 0; i < numberOfActivities; i++) {
+    updateToGrid.push([0, 0, 0, 0, 0, 0, 0])
+  }
+  console.log("AllMyWorkouts: ", this.state.workouts)
+  this.state.workouts.map(workout => {
+      const activityIndex = this.state.activities.indexOf(workout.name)
+      const activityWeek = updateToGrid[activityIndex]
+      const newPoints = activityWeek[workout.day] += workout.intensity
+      activityWeek[workout.day] = newPoints
+      updateToGrid[activityIndex] = activityWeek
+  })
+  console.table(updateToGrid)
+}
 componentDidMount() {
   this.getChosenTeam()
   this.getActivities()

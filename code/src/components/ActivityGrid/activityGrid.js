@@ -11,7 +11,6 @@ handleClick = (actName, day) => {
 }
 
 render() {
-  console.log("mina props", this.props.activities)
   return (
     <div className="grid-container">
       <h2>Min vecka:</h2>
