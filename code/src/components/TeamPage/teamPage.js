@@ -53,7 +53,7 @@ render() {
               placeholder="Sök din förening" />
           </div>
         </div>
-        <div className="tp-listItems">
+        <div className={this.state.teamSearch.length ? "tp-listItems show" : "tp-listItems hide"}>
           <ul>
             {teamSearch.map(team => (
               <SearchListItem
@@ -65,7 +65,7 @@ render() {
           </ul>
         </div>
         <div className="chosen-team">
-          <h3>Du har valt: &nbsp;</h3>
+          <h3>Ditt valda lag är: &nbsp;</h3>
           {this.state.chosenTeam}
         </div>
         <Link to="/mypage">
