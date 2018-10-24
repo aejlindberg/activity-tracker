@@ -4,8 +4,7 @@ import Header from "./Header/header.js"
 import TeamPage from "./TeamPage/teamPage.js"
 import MyPage from "./MyPage/myPage.js"
 import StatsPage from "./StatsPage/statsPage.js"
-import ActivityGrid from "./ActivityGrid/activityGrid.js"
-
+import NotFound from "./404/404.js"
 
 class App extends React.Component {
 
@@ -18,6 +17,7 @@ class App extends React.Component {
             <Route exact path="/" component={TeamPage} />
             <Route exact path="/mypage" component={MyPage} />
             <Route exact path="/stats" component={StatsPage} />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </Router>
