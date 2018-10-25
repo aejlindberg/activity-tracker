@@ -18,7 +18,8 @@ state = {
   modalActivity: "Gick",
   modalDay: 0,
   chosenIntensity: 2,
-  weekPoints: []
+  weekPoints: [],
+  activityLog: []
 }
 
 getChosenTeam = () => {
@@ -44,8 +45,17 @@ getWorkouts = () => {
     this.setState({
       workouts: dataFromStorage
     }, () => {
-      console.log(this.state.workouts)
       this.updateGrid()
+    })
+  }
+}
+
+getActivityLog = () => {
+  if (localStorage.getItem("activityLogEntries")) {
+    const dataFromStorage = JSON.parse(localStorage.getItem("activityLogEntries"))
+    this.setState({
+      activityLog: dataFromStorage
+    }, () => {
     })
   }
 }
@@ -104,11 +114,20 @@ addWorkout = e => {
     day: this.state.modalDay,
     intensity: Number(this.state.chosenIntensity)
   }
+  const workoutActivity = this.state.modalActivity
+  const newLogEntry = {
+    day: newWorkout.day,
+    activity: workoutActivity,
+    intensity: newWorkout.intensity
+  }
   this.setState({
+    activityLog: [newLogEntry, ...this.state.activityLog],
     workouts: this.state.workouts.concat(newWorkout)
   }, () => {
     const workoutData = JSON.stringify(this.state.workouts)
     localStorage.setItem("workouts", workoutData)
+    const activityLogData = JSON.stringify(this.state.activityLog)
+    localStorage.setItem("activityLogEntries", activityLogData)
     this.updateGrid()
   })
 }
@@ -135,9 +154,11 @@ componentDidMount() {
   this.getChosenTeam()
   this.getActivities()
   this.getWorkouts()
+  this.getActivityLog()
 }
 
 render() {
+
   let selectedDay = ""
   switch (this.state.modalDay) {
     case 0:
@@ -183,6 +204,7 @@ render() {
         <div className="activity-section-form">
           <form onSubmit={this.handleSubmitNew}>
             <input
+            className="activity-form"
               type="text"
               value={this.state.currentText}
               placeholder={this.state.placeHolderText}
@@ -192,7 +214,55 @@ render() {
         </div>
       </div>
       <div className="activity-section-log">
-        Activity Log
+        <h3>Aktivitetslogg:</h3>
+        <ul>
+          {this.state.activityLog.map(activity => {
+            let logDay = ""
+            switch (activity.day) {
+              case 0:
+                logDay = "Måndag"
+                break
+              case 1:
+                logDay = "Tisdag"
+                break
+              case 2:
+                logDay = "Onsdag"
+                break
+              case 3:
+                logDay = "Torsdag"
+                break
+              case 4:
+                logDay = "Fredag"
+                break
+              case 5:
+                logDay = "Lördag"
+                break
+              case 6:
+                logDay = "Söndag"
+                break
+              default:
+                logDay = "Ingen dag vald"
+            }
+            let logIntensity = ""
+            switch (activity.intensity) {
+              case 1:
+                logIntensity = "lätt intensitet"
+                break
+              case 2:
+                logIntensity = "normal intensitet"
+                break
+              case 3:
+                logIntensity = "hög intensitet"
+                break
+              default:
+                logIntensity = "Ingen intensitet vald"
+            }
+            return(
+              <li>
+              <p><strong>{logDay}:</strong> {activity.activity} ({logIntensity})</p>
+              </li>)
+          })}
+        </ul>
       </div>
         <Modal show={this.state.showModal} handleClose={this.hideModal}>
           <div className="mp-modal-content">
