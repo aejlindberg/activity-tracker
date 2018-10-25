@@ -1,0 +1,58 @@
+@media (min-width: 600px) and (max-width: 1200px) {
+  .chosen-team {
+    bottom: -80px;
+    margin-left: 10px;
+  }
+  .button-my-page {
+    bottom: -130px;
+    margin-left: 10px;
+  }
+  .tp-listItems {
+    height: 300px;
+    li {
+      padding: 5px;
+      width: 80%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    height: auto;
+  }
+  .tp-wrapper {
+    background-position: center;
+  }
+  .tp-input{
+    margin-left: 0;
+  }
+  .tp-searchSection {
+    justify-content: center;
+  }
+  .tp-search-icon {
+    display: none;
+  }
+  .chosen-team {
+    bottom: -80px;
+    margin-left: 10px;
+  }
+  .button-my-page {
+    bottom: -130px;
+    margin-left: 10px;
+  }
+  .tp-listItems {
+    font-size: 10px;
+    height: 300px;
+    overflow: scroll;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      padding-left: 20px;
+    }
+    li {
+      padding: 0;
+      width: 80%;
+    }
+  }
+
+}
