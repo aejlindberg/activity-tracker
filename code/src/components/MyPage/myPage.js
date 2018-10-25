@@ -19,7 +19,8 @@ state = {
   modalDay: 0,
   chosenIntensity: 2,
   weekPoints: [],
-  activityLog: []
+  activityLog: [],
+  dailyTotal: [0, 0, 0, 0, 0, 0, 0]
 }
 
 getChosenTeam = () => {
@@ -59,6 +60,16 @@ getActivityLog = () => {
     })
   }
 }
+
+getDailyTotal = () => {
+  if (localStorage.getItem("dailyTotal")) {
+    const dataFromStorage = JSON.parse(localStorage.getItem("dailyTotal"))
+    this.setState({
+      dailyTotal: dataFromStorage
+    })
+  }
+}
+
 
 handleGridClick = (activity, day) => {
   this.showModal(activity, day)
@@ -120,14 +131,19 @@ addWorkout = e => {
     activity: workoutActivity,
     intensity: newWorkout.intensity
   }
+  const newDailyTotal = this.state.dailyTotal
+  newDailyTotal[this.state.modalDay] += Number(this.state.chosenIntensity)
   this.setState({
     activityLog: [newLogEntry, ...this.state.activityLog],
-    workouts: this.state.workouts.concat(newWorkout)
+    workouts: this.state.workouts.concat(newWorkout),
+    dailyTotal: newDailyTotal
   }, () => {
     const workoutData = JSON.stringify(this.state.workouts)
     localStorage.setItem("workouts", workoutData)
     const activityLogData = JSON.stringify(this.state.activityLog)
     localStorage.setItem("activityLogEntries", activityLogData)
+    const dailyTotalData = JSON.stringify(this.state.dailyTotal)
+    localStorage.setItem("dailyTotal", dailyTotalData)
     this.updateGrid()
   })
 }
@@ -155,6 +171,7 @@ componentDidMount() {
   this.getActivities()
   this.getWorkouts()
   this.getActivityLog()
+  this.getDailyTotal()
 }
 
 render() {
@@ -200,6 +217,7 @@ render() {
         <ActivityGrid
           activities={this.state.activities}
           weekPoints={this.state.weekPoints}
+          dailyTotal={this.state.dailyTotal}
           handleGridClick={(activity, day) => this.handleGridClick(activity, day)} />
         <div className="activity-section-form">
           <form onSubmit={this.handleSubmitNew}>
