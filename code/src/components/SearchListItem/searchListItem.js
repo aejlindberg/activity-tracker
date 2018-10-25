@@ -17,8 +17,10 @@ class SearchListItem extends React.Component {
     return (
       <li>
         <div onClick={this.handleClick}>
-          {this.props.name}<br />
-          {this.props.city}
+          <p>
+            {this.props.name},&nbsp;
+            {this.props.city}
+          </p>
         </div>
       </li>
     )

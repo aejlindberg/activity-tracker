@@ -17,9 +17,9 @@ render() {
 
   return (
     <tr>
-      <td>{this.props.name}</td>
+      <td className="table-activity-name">{this.props.name}</td>
       {days.map((day, index) => {
-        return <td
+        return <td className="table-clickable"
           key={index}
           onClick={() => this.handleDayClick(index)}
           >{day}</td>

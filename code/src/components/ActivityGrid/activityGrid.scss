@@ -1,3 +1,30 @@
+@import "../../colors.scss";
+
 .grid-container {
   display: block;
+  
+  table {
+    border: 1px solid $gray;
+    border-collapse: collapse;
+    
+    th, td {
+      padding: 10px;
+      text-align: center;
+      width: 20px;
+    }
+    
+    .table-activity-name {
+      text-align: left;
+      width: auto;
+    }
+    
+    .table-clickable {
+      cursor: pointer;
+      
+      &:focus, &:hover {
+        background-color: $red;
+        color: $white;
+      }
+    }
+  }
 }

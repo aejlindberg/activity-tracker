@@ -33,6 +33,18 @@ handleTeamChoice = (teamName, teamCity) => {
   }, () => localStorage.setItem("chosenTeam", this.state.chosenTeam))
 }
 
+getChosenTeam = () => {
+  if (localStorage.getItem("chosenTeam")) {
+    this.setState({
+      chosenTeam: localStorage.getItem("chosenTeam")
+    })
+  }
+}
+
+componentDidMount() {
+  this.getChosenTeam()
+}
+
 render() {
   const { query, teamSearch } = this.state
 
@@ -53,7 +65,7 @@ render() {
               placeholder="Sök din förening" />
           </div>
         </div>
-        <div className="tp-listItems">
+        <div className={this.state.teamSearch.length ? "tp-listItems show" : "tp-listItems hide"}>
           <ul>
             {teamSearch.map(team => (
               <SearchListItem
@@ -65,11 +77,11 @@ render() {
           </ul>
         </div>
         <div className="chosen-team">
-          <h3>Du har valt: &nbsp;</h3>
+          <h3>Ditt valda lag är: &nbsp;</h3>
           {this.state.chosenTeam}
         </div>
         <Link to="/mypage">
-          <button type="button">Gå till min sida</button>
+          <button type="button" className="button-my-page">Gå till min sida</button>
         </Link>
       </div>
     </main>
