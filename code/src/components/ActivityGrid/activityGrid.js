@@ -38,7 +38,7 @@ render() {
             />
           })}
           <tr>
-            <td className="table-total">TOT</td>
+            <td className="table-total">Poäng:</td>
             {this.props.dailyTotal.map(dayTotal => {
               return (
                 <td className={(dayTotal >= 3) ? "table-dayIsDone" : "table-dayNotDone"}>

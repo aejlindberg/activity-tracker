@@ -11,12 +11,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   .mp-header-section-team {
     align-items: flex-end;
     display: flex;
     flex-direction: column;
-    
+
     .mp-header-section-button {
       @extend %button-shared;
     }
@@ -26,19 +26,19 @@
 .activity-section-grid {
   height: auto;
   width: 100%;
-  
+
   .activity-section-form {
     margin-top: 20px;
     position: relative;
     width: 250px;
-    
+
     .activity-form {
       border: 1px solid $gray;
       height: 30px;
       padding: 5px 85px 5px 10px;
       width: 165px;
     }
-    
+
     .add-activity {
       @extend %button-shared;
       height: 30px;
@@ -54,7 +54,7 @@
 
 .activity-section-log {
   margin-top: 30px;
-  
+
   ul {
     list-style: none;
     padding-inline-start: 10px;
@@ -78,13 +78,13 @@
     top: 50%;
     transform: translate(-50%,-50%);
     width: 40%;
-    
+
     .mp-modal-content {
       height: 100%;
       .mp-modal-workout-form {
         align-items: center;
         display: flex;
-        
+
         select {
           border: 1px solid $gray;
           height: 35px;
@@ -93,12 +93,12 @@
         }
       }
     }
-    
+
     .choose {
       @extend %button-shared;
       margin-top: 20px;
     }
-    
+
     .close {
       background-color: transparent;
       border: none;
@@ -106,7 +106,7 @@
       position: absolute;
       right: 5px;
       top: 0;
-    }  
+    }
   }
 }
 
@@ -117,3 +117,4 @@
 .display-none {
   display: none;
 }
+@import "../../mediaqueries.scss";
