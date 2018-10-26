@@ -14,11 +14,8 @@
       width: 80%;
     }
   }
-  .wrapper{
-    width: auto;
-  }
-  .mp-header-section {
-    width: 100%;
+  .mp-wrapper {
+    width: calc(100% - 40px);
   }
   .header {
     width: auto;
@@ -64,11 +61,8 @@
       width: 80%;
     }
   }
-  .wrapper{
-    width: auto;
-  }
-  .mp-header-section {
-    width: 100%;
+  .mp-wrapper {
+    width: calc(100% - 40px);
   }
   .header {
     width: auto;
@@ -77,5 +71,19 @@
   .activity-section-grid {
     display: flex;
     justify-content: flex-start;
+  }
+  .grid-container {
+    table {
+      width: 280px;
+      
+      th, td {
+        padding: 3px;
+        width: 10%;
+      }
+    .table-activity-name {
+      width: 30%;
+    }
+    }
+    
   }
 }

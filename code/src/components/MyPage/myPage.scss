@@ -1,7 +1,7 @@
 @import "../../colors.scss";
 @import "../../extensions.scss";
 
-.wrapper {
+.mp-wrapper {
   margin: 0 auto;
   padding: 20px;
   width: 1200px;
@@ -23,32 +23,37 @@
   }
 }
 
+.activity-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .activity-section-grid {
   height: auto;
   width: 100%;
+}
 
-  .activity-section-form {
-    margin-top: 20px;
-    position: relative;
-    width: 250px;
-
-    .activity-form {
-      border: 1px solid $gray;
-      height: 30px;
-      padding: 5px 85px 5px 10px;
-      width: 165px;
-    }
-
-    .add-activity {
-      @extend %button-shared;
-      height: 30px;
-      padding: 0 10px;
-      position: absolute;
-      margin-left: 20px;
-      right: -5px;
-      top: 50%;
-      transform: translate(0, -50%);
-    }
+.activity-section-form {
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+  
+  .activity-form {
+    border: 1px solid $gray;
+    height: 30px;
+    padding: 5px 85px 5px 10px;
+    width: 165px;
+  }
+  
+  .add-activity {
+    @extend %button-shared;
+    height: 30px;
+    padding: 0 10px;
+    position: absolute;
+    margin-left: 20px;
+    left: 170px;
+    top: 50%;
+    transform: translate(0, -50%);
   }
 }
 

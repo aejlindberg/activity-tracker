@@ -204,7 +204,7 @@ render() {
       selectedDay = "Ingen dag vald"
   }
   return (
-    <div className="wrapper">
+    <div className="mp-wrapper">
       <div className="mp-header-section">
         <h1>Min sida</h1>
         <div className="mp-header-section-team">
@@ -214,15 +214,17 @@ render() {
           </Link>
         </div>
       </div>
-      <div className="graph-section">
-        <Graph dailyTotal={this.state.dailyTotal} />
-      </div>
-      <div className="activity-section-grid">
-        <ActivityGrid
-          activities={this.state.activities}
-          weekPoints={this.state.weekPoints}
-          dailyTotal={this.state.dailyTotal}
-          handleGridClick={(activity, day) => this.handleGridClick(activity, day)} />
+      <div className="activity-wrapper">
+        <div className="graph-section">
+          <Graph dailyTotal={this.state.dailyTotal} />
+        </div>
+        <div className="activity-section-grid">
+          <ActivityGrid
+            activities={this.state.activities}
+            weekPoints={this.state.weekPoints}
+            dailyTotal={this.state.dailyTotal}
+            handleGridClick={(activity, day) => this.handleGridClick(activity, day)} />
+        </div>
         <div className="activity-section-form">
           <form onSubmit={this.handleSubmitNew}>
             <input
@@ -234,57 +236,57 @@ render() {
             <button className="add-activity" type="submit">Lägg till</button>
           </form>
         </div>
-      </div>
-      <div className="activity-section-log">
-        <h3>Aktivitetslogg:</h3>
-        <ul>
-          {this.state.activityLog.map(activity => {
-            let logDay = ""
-            switch (activity.day) {
-              case 0:
-                logDay = "Måndag"
-                break
-              case 1:
-                logDay = "Tisdag"
-                break
-              case 2:
-                logDay = "Onsdag"
-                break
-              case 3:
-                logDay = "Torsdag"
-                break
-              case 4:
-                logDay = "Fredag"
-                break
-              case 5:
-                logDay = "Lördag"
-                break
-              case 6:
-                logDay = "Söndag"
-                break
-              default:
-                logDay = "Ingen dag vald"
-            }
-            let logIntensity = ""
-            switch (activity.intensity) {
-              case 1:
-                logIntensity = "lätt intensitet"
-                break
-              case 2:
-                logIntensity = "normal intensitet"
-                break
-              case 3:
-                logIntensity = "hög intensitet"
-                break
-              default:
-                logIntensity = "Ingen intensitet vald"
-            }
-            return(
-              <li>
-              <p><strong>{logDay}:</strong> {activity.activity} ({logIntensity})</p>
-              </li>)
-          })}
-        </ul>
+        <div className="activity-section-log">
+          <h3>Aktivitetslogg:</h3>
+          <ul>
+            {this.state.activityLog.map(activity => {
+              let logDay = ""
+              switch (activity.day) {
+                case 0:
+                  logDay = "Måndag"
+                  break
+                case 1:
+                  logDay = "Tisdag"
+                  break
+                case 2:
+                  logDay = "Onsdag"
+                  break
+                case 3:
+                  logDay = "Torsdag"
+                  break
+                case 4:
+                  logDay = "Fredag"
+                  break
+                case 5:
+                  logDay = "Lördag"
+                  break
+                case 6:
+                  logDay = "Söndag"
+                  break
+                default:
+                  logDay = "Ingen dag vald"
+              }
+              let logIntensity = ""
+              switch (activity.intensity) {
+                case 1:
+                  logIntensity = "lätt intensitet"
+                  break
+                case 2:
+                  logIntensity = "normal intensitet"
+                  break
+                case 3:
+                  logIntensity = "hög intensitet"
+                  break
+                default:
+                  logIntensity = "Ingen intensitet vald"
+              }
+              return(
+                <li>
+                <p><strong>{logDay}:</strong> {activity.activity} ({logIntensity})</p>
+                </li>)
+            })}
+          </ul>
+        </div>
       </div>
         <Modal show={this.state.showModal} handleClose={this.hideModal}>
           <div className="mp-modal-content">
