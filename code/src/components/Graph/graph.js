@@ -1,6 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import { LineChart, Line, Tooltip, Legend, YAxis, XAxis, CartesianGrid } from "recharts"
+import "./graph.scss"
 
 class Graph extends React.Component {
 
@@ -30,12 +31,12 @@ class Graph extends React.Component {
     return (
       <section className="graph-container">
         <h2 className="graph-container__header">Min vecka:</h2>
-        <LineChart className="graph" width={400} height={200} data={graphData}>
+        <LineChart className="graph" width={438} height={250} data={graphData}>
           <Tooltip />
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
           <YAxis type="number" domain={[0, 4]}  />
-          <Line type="monotone" dataKey="dailyPoints" stroke={"green"} activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="dailyPoints" stroke={"#e60000"} activeDot={{ r: 8 }} />
         </LineChart>
       </section>
     )

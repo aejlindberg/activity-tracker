@@ -214,6 +214,9 @@ render() {
           </Link>
         </div>
       </div>
+      <div className="graph-section">
+        <Graph dailyTotal={this.state.dailyTotal} />
+      </div>
       <div className="activity-section-grid">
         <ActivityGrid
           activities={this.state.activities}
@@ -231,9 +234,6 @@ render() {
             <button className="add-activity" type="submit">Lägg till</button>
           </form>
         </div>
-      </div>
-      <div className="graph-section">
-        <Graph dailyTotal={this.state.dailyTotal} />
       </div>
       <div className="activity-section-log">
         <h3>Aktivitetslogg:</h3>
