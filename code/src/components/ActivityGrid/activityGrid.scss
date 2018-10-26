@@ -5,7 +5,8 @@
 
   table {
     border: 1px solid $gray;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 2px;
 
     th, td {
       padding: 10px;
@@ -23,20 +24,23 @@
 
       &:focus, &:hover {
         background-color: $red;
-        color: $white;
+        color: #fff;
       }
     }
     .table-total {
-      background-color: $red;
-      color: $white;
+      background-color: transparent;
+      color: $black;
+      font-weight: bold;
     }
     .table-dayNotDone {
-      background-color: $black;
-      color: $white;
+      background-color: $darkgray;
+      border-radius: 50%;
+      color: #fff;
     }
     .table-dayIsDone {
       background-color: $green;
-      color: $white;
+      border-radius: 50%;
+      color: #fff;
     }
 
   }
