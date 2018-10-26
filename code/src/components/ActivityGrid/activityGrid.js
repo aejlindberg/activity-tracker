@@ -13,7 +13,7 @@ handleClick = (actName, day) => {
 render() {
   return (
     <div className="grid-container">
-      <h2>Min vecka:</h2>
+      <h2>Aktiviteter:</h2>
       <table>
         <thead>
           <tr>

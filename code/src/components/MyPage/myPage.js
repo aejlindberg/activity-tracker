@@ -2,6 +2,7 @@ import React from "react"
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 import "./myPage.scss"
 import ActivityGrid from "../ActivityGrid/activityGrid.js"
+import Graph from "../Graph/graph.js"
 class MyPage extends React.Component {
 
 state = {
@@ -230,6 +231,9 @@ render() {
             <button className="add-activity" type="submit">Lägg till</button>
           </form>
         </div>
+      </div>
+      <div className="graph-section">
+        <Graph dailyTotal={this.state.dailyTotal} />
       </div>
       <div className="activity-section-log">
         <h3>Aktivitetslogg:</h3>
