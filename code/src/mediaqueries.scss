@@ -13,11 +13,16 @@
       padding: 5px;
       width: 80%;
     }
-    .wrapper {
-      margin: 0 auto;
-      padding: 20px;
-      width: 800px;
-    }
+  }
+  .wrapper{
+    width: auto;
+  }
+  .mp-header-section {
+    width: 100%;
+  }
+  .header {
+    width: auto;
+    text-align: center;
   }
 }
 
@@ -59,5 +64,18 @@
       width: 80%;
     }
   }
-
+  .wrapper{
+    width: auto;
+  }
+  .mp-header-section {
+    width: 100%;
+  }
+  .header {
+    width: auto;
+    text-align: center;
+  }
+  .activity-section-grid {
+    display: flex;
+    justify-content: flex-start;
+  }
 }
