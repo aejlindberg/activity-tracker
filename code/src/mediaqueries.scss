@@ -64,6 +64,13 @@
   .mp-wrapper {
     width: calc(100% - 40px);
   }
+  .mp-header-section {
+    flex-direction: column-reverse;
+  }
+  .mp-header-section-team {
+    align-items: flex-start;
+    
+  }
   .header {
     width: auto;
     text-align: center;
